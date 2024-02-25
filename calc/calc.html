@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calculator</title>
+</head>
+
+<body>
+    <h1>A Wip of a calculator</h1>
+    <div>
+        <br/>
+        <button class="input">1</button>
+        <button class="input">2</button>
+        <button class="input">3</button>
+        <br/>
+        <button class="input">4</button>
+        <button class="input">5</button>
+        <button class="input">6</button>
+        <br/>
+        <button class="input">7</button>
+        <button class="input">8</button>
+        <button class="input">9</button>
+        <br/>
+        <button class="input">0</button>
+        <br/>
+        <br/>
+        <button class="input">+</button>
+        <button class="input">-</button>
+        <button class="input">*</button>
+        <button class="input">/</button>
+        <br/>
+        <br/>
+        <button class="input">=</button>
+        <br/>
+        <br/>
+        <button class="clear">Clear</button>
+        <br/>
+        
+
+
+    </div>
+
+<div id="result">0</div>
+
+</body>
+
+<script>
+window.onload = function (){
+	let elements = document.getElementsByClassName('input');
+	let output = document.getElementById("result");
+	let clear = document.getElementsByClassName('clear')[0];
+    console.log(elements);
+    console.log(output);
+    console.log(clear);
+
+	for(let i=0;i<elements.length;i++){
+		  if(elements[i].innerHTML === '='){
+			    elements[i].addEventListener("click", calculate(i));
+		  }else{
+			   elements[i].addEventListener("click", addtocurrentvalue(i));
+		  }
+	}
+    
+
+	function addtocurrentvalue (i){
+        return function(){
+        if(output.innerHTML === "0"){
+            output.innerHTML=elements[i].innerHTML;
+            console.log("sub 0 for num");
+            }
+        else{
+            output.innerHTML+=elements[i].innerHTML;
+            console.log("add num");
+
+            }
+        }
+    }
+
+    function calculate (i){
+        return function(){
+        output.innerHTML=eval(output.innerHTML);
+        }
+    }
+
+    clear.onclick = function () {
+    output.innerHTML = "0";
+    }; 
+}
+</script>
+</html>
